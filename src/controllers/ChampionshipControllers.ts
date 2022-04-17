@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { prismaClient } from "../database/prismaClient";
+import ChampionshipService from "../services/ChampionshipService";
 
 
 
@@ -7,18 +7,12 @@ import { prismaClient } from "../database/prismaClient";
 class ChampionshipController {
 
     async store(request: Request, response: Response) {
-        const { name, bar_code, price } = request.body
+        const { name, category_id, location } = request.body
+
+        const championship = await ChampionshipService.create(name, category_id, location)
 
 
-        const product = await prismaClient.championship.create({
-            data: {
-                bar_code,
-                name,
-                price
-            }
-        })
-
-        return response.json(product)
+        return response.json(championship)
     }
 
 }

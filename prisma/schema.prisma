@@ -11,13 +11,14 @@ datasource db {
 }
 
 model Championship {
-  id         String   @id @default(uuid())
-  name       String
-  bar_code   String   @unique
-  price      Decimal
-  created_at DateTime @default(now())
+  id          String   @id @default(uuid())
+  name        String
+  category_id String
+  location    String
+  created_at  DateTime @default(now())
 
-  ChampionshipCategory ChampionshipCategory[]
+  category Category @relation(fields: [category_id], references: [id])
+
   @@map("championships")
 }
 
@@ -25,16 +26,6 @@ model Category {
   id   String @id @default(uuid())
   name String
 
-  ChampionshipCategory ChampionshipCategory[]
+  Championship Championship[]
   @@map("categories")
-}
-
-model ChampionshipCategory {
-  id              String       @id @default(uuid())
-  id_championship String
-  id_category     String
-  championship    Championship @relation(fields: [id_championship], references: [id])
-  category        Category     @relation(fields: [id_category], references: [id])
-
-  @@map("championships_categories")
 }
