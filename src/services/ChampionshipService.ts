@@ -1,7 +1,3 @@
-
-
-
-import { prismaClient } from "../database/prismaClient";
 import ChampionshipRepository from "../repository/ChampionshipRepository";
 
 
@@ -11,15 +7,17 @@ class ChampionshipService {
 
         const championship = ChampionshipRepository.create(name, category_id, location)
 
-
-
         return championship
     }
     async findAll() {
 
         const championship = ChampionshipRepository.findAll()
 
+        return championship
+    }
+    async findById(id: string) {
 
+        const championship = ChampionshipRepository.findById(id)
 
         return championship
     }

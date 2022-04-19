@@ -19,6 +19,15 @@ class ChampionshipController {
         const championship = await ChampionshipService.findAll()
         return response.json(championship)
     }
+
+    async show(request: Request, response: Response) {
+        const { id } = request.params
+        const championship = await ChampionshipService.findById(id)
+        return response.json(championship)
+
+
+    }
+
 }
 
 export default new ChampionshipController()

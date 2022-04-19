@@ -24,6 +24,21 @@ class ChampionshipRepository {
         })
         return championship
     }
+    async findById(id: string) {
+        const championship = await prismaClient.championship.findUnique({
+            where: {
+                id
+            },
+            include: {
+                category: {
+                    select: {
+                        name: true
+                    }
+                }
+            }
+        })
+        return championship
+    }
 
 }
 export default new ChampionshipRepository()

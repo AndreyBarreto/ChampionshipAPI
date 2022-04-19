@@ -9,6 +9,10 @@ const router = Router()
 
 router.post('/championship', ChampionshipController.store)
 router.get('/championship', ChampionshipController.index)
+router.get('/championship/:id', ChampionshipController.show)
+
+
+
 router.post('/category', CategoryController.store)
 
 
