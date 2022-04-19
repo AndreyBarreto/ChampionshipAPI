@@ -15,6 +15,10 @@ class ChampionshipController {
         return response.json(championship)
     }
 
+    async index(request: Request, response: Response) {
+        const championship = await ChampionshipService.findAll()
+        return response.json(championship)
+    }
 }
 
 export default new ChampionshipController()

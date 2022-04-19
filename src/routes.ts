@@ -8,6 +8,7 @@ const router = Router()
 
 
 router.post('/championship', ChampionshipController.store)
+router.get('/championship', ChampionshipController.index)
 router.post('/category', CategoryController.store)
 
 

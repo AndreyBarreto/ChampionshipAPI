@@ -15,6 +15,14 @@ class ChampionshipService {
 
         return championship
     }
+    async findAll() {
+
+        const championship = ChampionshipRepository.findAll()
+
+
+
+        return championship
+    }
 
 }
 

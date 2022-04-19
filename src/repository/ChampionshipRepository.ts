@@ -11,5 +11,19 @@ class ChampionshipRepository {
         })
         return championship
     }
+
+    async findAll() {
+        const championship = await prismaClient.championship.findMany({
+            include: {
+                category: {
+                    select: {
+                        name: true
+                    }
+                }
+            }
+        })
+        return championship
+    }
+
 }
 export default new ChampionshipRepository()

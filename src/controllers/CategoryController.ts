@@ -8,8 +8,7 @@ class CategoryController {
     async store(request: Request, response: Response) {
         const { name } = request.body
 
-        const category = CategoryServices.create(name)
-
+        const category = await CategoryServices.create(name)
 
 
         return response.json(category)
