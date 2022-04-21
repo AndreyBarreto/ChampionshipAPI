@@ -9,9 +9,14 @@ class ChampionshipService {
 
         return championship
     }
-    async findAll() {
+    async findAll(orderBy: string, page: number, take: number) {
 
-        const championship = ChampionshipRepository.findAll()
+        const direction: string = orderBy == 'asc' ? 'asc' : 'desc'
+
+        page = page ? page : 1
+        take = take ? take : 10
+
+        const championship = ChampionshipRepository.findAll(direction, page, take)
 
         return championship
     }

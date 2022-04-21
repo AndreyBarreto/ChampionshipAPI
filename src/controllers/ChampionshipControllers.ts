@@ -9,6 +9,10 @@ class ChampionshipController {
     async store(request: Request, response: Response) {
         const { name, category_id, location } = request.body
 
+        if (!name || !category_id || !location) {
+            return response.status(400).json({ error: "Missing required fields" })
+        }
+
         const championship = await ChampionshipService.create(name, category_id, location)
 
 
@@ -16,7 +20,9 @@ class ChampionshipController {
     }
 
     async index(request: Request, response: Response) {
-        const championship = await ChampionshipService.findAll()
+        let { orderBy, page, take }: any = request.query
+
+        const championship = await ChampionshipService.findAll(orderBy, parseInt(page), parseInt(take))
         return response.json(championship)
     }
 

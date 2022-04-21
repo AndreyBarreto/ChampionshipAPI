@@ -12,13 +12,13 @@ class ChampionshipRepository {
         return championship
     }
 
-    async findAll() {
+    async findAll(direction: any, page: number, take: number) {
         const championship = await prismaClient.championship.findMany({
+            skip: page,
+            take: take,
+            orderBy: [{ name: direction }],
             include: {
                 category: {
-                    select: {
-                        name: true
-                    }
                 }
             }
         })
